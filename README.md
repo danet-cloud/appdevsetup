@@ -1,5 +1,7 @@
 # Development project rules
 
+Starting point for new AI development projects.
+
 This repository contains project rules and playbooks for AI-assisted development work. These rules guide the AI assistant in maintaining consistency, following best practices, and ensuring quality across development projects.
 
 ## Structure
@@ -23,4 +25,3 @@ These rules ensure:
 ## Usage
 
 These rules are automatically applied by Cursor IDE when working in projects that reference this repository or when these rules are configured in the workspace.
-
