@@ -25,3 +25,7 @@ These rules ensure:
 ## Usage
 
 These rules are automatically applied by Cursor IDE when working in projects that reference this repository or when these rules are configured in the workspace.
+
+## Inspiration
+
+These rules are based on Anthropic's research on [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) (26 November 2025), which outlines best practices for enabling AI agents to make consistent progress across multiple context windows.
