@@ -1,0 +1,57 @@
+---
+description: Always apply in any situation: explore → plan → implement → verify workflow, with integration awareness
+globs: []
+alwaysApply: true
+---
+
+Explore plan implement
+
+Default loop
+- For any non-trivial change: explore → plan → implement → verify → summarise.
+- Prefer small diffs and existing patterns.
+
+Integration check (do this early)
+- Before designing a new solution, quickly assess:
+  - Is there an existing tool/app in the repo that this should extend?
+  - Would a shared “core” module reduce duplication across projects?
+- If integration seems feasible, recommend a modular approach (shared core + small entry points).
+
+Explore (no coding yet)
+- Locate the real entry points, config, and existing patterns.
+- Identify similar prior work in the repo if present.
+
+Multi-session startup checklist (for long-running or complex projects)
+- Read the playbook, especially the session log and operational notes.
+- Check git log for recent commits and their messages.
+- Run the dev/test command to confirm the environment works.
+- Identify the single next task before writing any code.
+- If something is broken, fix it before starting new work.
+
+Plan
+- Provide a short plan containing:
+  - steps (ordered),
+  - files/modules likely to change,
+  - the default implementation choice (with brief rationale),
+  - verification steps,
+  - rollback path (if relevant).
+
+Implement
+- Implement in small chunks.
+- Avoid drive-by refactors unless needed for the goal.
+- Keep behaviours backwards compatible where feasible.
+
+Verify
+- Run relevant fast checks first (targeted tests, lint, typecheck).
+- If commands cannot be run, provide exact commands and expected outcomes.
+
+Summarise
+- What changed and why
+- How to run/use it (in user-friendly terms)
+- How it was verified
+- Any follow-ups/limitations
+
+End-of-session cleanup (before finishing a session)
+- Commit current progress with a clear, descriptive message.
+- Update the playbook session log with what was done and what's next.
+- Leave no half-implemented features; if interrupted mid-feature, document the state clearly.
+- Ensure the codebase is in a "clean state"—as if ready to merge or hand off.

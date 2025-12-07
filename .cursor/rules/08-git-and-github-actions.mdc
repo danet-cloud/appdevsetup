@@ -1,0 +1,25 @@
+---
+description: Use when commits/PRs/GitHub Actions are involved: keep changes small and automations maintainable
+globs: []
+alwaysApply: false
+---
+
+Git and GitHub actions
+
+Commits
+- Prefer small, focused commits with clear “what and why”.
+- Follow existing repo conventions.
+
+GitHub Actions
+- Prefer simple workflows:
+  - clear names,
+  - minimal secrets,
+  - explicit caching only when needed.
+- Avoid overly complex matrices unless required.
+- If Actions are used as a runner (scheduled jobs), include:
+  - idempotency,
+  - clear logs,
+  - safe handling of failures.
+
+Releases
+- If there is a packaging step (droplet/app), document how to produce the artefact.

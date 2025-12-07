@@ -1,0 +1,21 @@
+---
+description: Use for multi-step work: maintain a short checklist/scratchpad and tick items off
+globs: []
+alwaysApply: false
+---
+
+Checklists and scratchpads
+
+When to use
+- Multi-file refactors, migrations, repeated errors, or long debugging.
+
+How to use
+- Maintain a checklist in-chat or in a small doc file (AI may create one if helpful).
+- Keep it short, actionable, and up to date.
+
+Suggested structure
+- Goal
+- Assumptions
+- Checklist (one item per step)
+- Findings/decisions
+- Verification notes

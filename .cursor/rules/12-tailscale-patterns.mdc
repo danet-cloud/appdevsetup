@@ -1,0 +1,80 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+
+Tailscale patterns (iphone ↔ mac studio)
+
+When to consider Tailscale
+- Any workflow where the iphone or a remote laptop must talk directly to a service on the Mac Studio.
+- Situations where a watched folder feels too indirect or slow, or where you want an immediate response.
+- Cases where you would otherwise expose a port on the home router or stand up a cloud relay.
+
+Preconditions
+- Tailscale is installed and signed in on:
+  - Mac Studio
+  - iphone
+  - any other client that should reach the service
+- Devices are on the same tailnet and reachable by hostname, for example:
+  - macstudio.tailnet-name.ts.net
+
+Default architecture pattern
+
+Core idea
+- Put the actual logic on the Mac Studio as a simple http service.
+- Reach it from the iphone via Tailscale using Apple Shortcuts.
+- Keep everything inside the tailnet and avoid public exposure.
+
+Mac Studio
+- Run a small http server that:
+  - listens on a clear port, for example 8080
+  - exposes one or more endpoints, for example:
+    - POST /jobs/file
+    - GET /jobs/{id}/status
+  - accepts authentication via a simple secret header or token when appropriate
+  - writes logs per request with inputs, outputs, and errors
+- Bind the server to:
+  - 0.0.0.0 or the local Tailscale ip, depending on the framework defaults
+- Store configuration such as:
+  - port
+  - api key or token
+  - paths for output folders
+  in an env file, not hard coded.
+
+Iphone (Shortcuts)
+- Use a Shortcut as the user facing trigger.
+- Preferred pattern:
+  - Shortcut input: receives a file or text from the share sheet
+  - Action: “Get contents of url”
+    - method: POST
+    - url: http://macstudio.tailnet-name.ts.net:PORT/path
+    - request body: file or json, whichever the server expects
+    - headers: include secret token header if required
+  - Optional: handle response and
+    - show a notification
+    - save returned file to Files or a specific folder
+- Name the shortcut clearly, for example:
+  - “Send to Mac Studio summarise report”
+  - “Send to Mac Studio ingest audio”
+
+Alternative trigger options
+- Watched folder over Tailscale network shares:
+  - mount a network share over the tailnet and drop files into it
+- Ssh or sftp based flows:
+  - use an ssh aware app on iphone to push files or trigger commands
+- These are secondary choices, the default should be the http shortcut pattern above unless the repo or project description clearly prefers another method.
+
+Security and safety
+- Keep the service reachable only inside the tailnet, do not open ports on the public router.
+- Use at least a simple shared token in headers if the endpoint performs sensitive or expensive work.
+- Log only what is needed, avoid logging full content for highly sensitive data unless the project description says this is acceptable.
+
+Design checklist for new features
+- If iphone or remote access is needed, ask:
+  - Could this be a watched folder only flow
+  - If not, would an http endpoint via Tailscale provide a better experience
+- If yes, propose:
+  - one small service on the Mac Studio
+  - one Shortcut pattern that hits it
+  - a brief runbook describing how to use it.

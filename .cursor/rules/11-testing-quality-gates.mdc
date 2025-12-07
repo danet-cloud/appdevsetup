@@ -1,0 +1,19 @@
+---
+description: Use when changing behaviour: tests and quality gates must be updated and run
+globs: []
+alwaysApply: false
+---
+
+Testing and quality gates
+
+Core expectations
+- For bug fixes: add a regression test when practical.
+- For features: add tests that cover key acceptance criteria and edge cases.
+
+Order of operations
+- Run targeted tests first.
+- Then lint/typecheck as appropriate.
+
+Non-technical friendly output
+- Summarise what was tested in plain English.
+- If tests cannot be run here, provide exact commands and what “pass” looks like.

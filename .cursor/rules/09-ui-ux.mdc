@@ -1,0 +1,31 @@
+---
+description: Use for UI/front-end changes: consistency, accessibility basics, and testable behaviours
+globs:
+  - "**/*.tsx"
+  - "**/*.jsx"
+  - "**/*.vue"
+  - "**/*.svelte"
+  - "**/*.html"
+  - "**/*.css"
+  - "**/*.scss"
+  - "**/tailwind.config.*"
+  - "**/*.stories.*"
+alwaysApply: false
+---
+
+Ui and ux
+
+Consistency
+- Match existing component patterns, spacing, and typography conventions.
+- Prefer improving the smallest surface area that achieves the goal.
+
+Accessibility basics
+- Use semantic elements where possible.
+- Ensure keyboard navigation works for interactive components.
+- Use aria only when necessary and correct.
+
+States
+- Cover loading, empty, error, and success states.
+
+Verification
+- Provide simple manual steps: what to click, what should happen, and what to look for.

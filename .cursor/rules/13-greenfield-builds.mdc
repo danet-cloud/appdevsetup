@@ -1,0 +1,42 @@
+---
+description: Use when building a new app from scratch: feature tracking, incremental progress, and self-verification
+globs: []
+alwaysApply: false
+---
+
+Greenfield builds (new apps from scratch)
+
+When to use
+- Building a new application, tool, or UI from a high-level description.
+- Projects expected to span multiple sessions or context windows.
+- Any build where "declare victory too early" or "do too much at once" are risks.
+
+Feature list setup (initialiser session)
+- On the first session, create a feature list file (JSON or Markdown) expanding the user's prompt into discrete, testable features.
+- Each feature should have:
+  - a short description,
+  - steps to verify it works,
+  - a status (pending / passing / failing).
+- Mark all features as "pending" or "failing" initially.
+- Store this file in the repo root or a docs folder (e.g. `features.json` or `FEATURES.md`).
+
+Incremental progress (every session)
+- Work on ONE feature at a time.
+- Do not start a new feature until the current one passes its verification steps.
+- Avoid the temptation to "one-shot" the entire app.
+
+Self-verification before marking done
+- Test each feature end-to-end as a user would, not just with unit tests or curl commands.
+- For web apps: use browser automation or manual testing to confirm the feature works visually.
+- Only mark a feature as "passing" after successful end-to-end verification.
+- If verification fails, fix the issue before moving on.
+
+Feature list hygiene
+- Do not remove or edit feature descriptions to make them easier to pass.
+- Only change the status field.
+- If a feature needs to be split or clarified, add new entries rather than modifying existing ones.
+
+Session discipline
+- At the start: read the feature list, pick the highest-priority incomplete feature.
+- At the end: update the feature list status, commit progress, update the playbook session log.
+- Leave the app in a working state—no broken builds or half-implemented features.

@@ -1,0 +1,49 @@
+---
+description: Use when building automations: local-first job runner, watched folders, droplets, scheduling, and logs
+globs: []
+alwaysApply: false
+---
+
+Local runner and triggers
+
+Default architecture (recommend this unless there is a reason not to)
+- “Job” is a script or small app that:
+  - reads an input file/folder,
+  - produces outputs into a predictable output folder,
+  - writes a log entry per run,
+  - is idempotent (safe to rerun).
+
+Preferred triggers (choose the simplest that fits)
+1) Watched folder (default)
+- Use a “drop” folder for inputs and a separate output folder.
+- iCloud/Dropbox folders are valid when iPhone capture needs to land there.
+- Ensure partial uploads are handled (e.g. only process when file is stable/complete).
+
+2) Desktop droplet
+- A drag-and-drop “app” that runs the job on dropped files.
+- Good for quick, manual workflows with minimal UI.
+
+3) Scheduled runs
+- Use launchd (macOS) for schedules and long-running agents.
+- Prefer a single plist + a single entry script over many background processes.
+
+4) Simple local endpoint (optional)
+- Use when iPhone Shortcuts needs to send data directly.
+- Prefer local-network access or a private tunnel/VPN (no public unauthenticated endpoints).
+
+Operational essentials (always include)
+- Logging: clear per-run logs with timestamps, inputs, outputs, errors.
+- Dry-run mode if destructive.
+- A single "run" command users can copy/paste.
+- Clear failure behaviour: do not silently drop files; move failures to a "failed" folder with a reason.
+
+Error handling defaults
+- Fail visibly: never swallow errors silently; log them and surface to the user.
+- Structured errors: include what failed, why, and a suggested next step.
+- Retry logic: for transient failures (network, rate limits), retry 2–3 times with exponential backoff before failing.
+- Partial success: if processing multiple items, continue on individual failures and report a summary at the end.
+- Recovery artefacts: on failure, preserve inputs and intermediate outputs in a "failed" subfolder for debugging.
+
+Implementation choice policy
+- The AI chooses the implementation details (watcher library/tooling) based on repo stack and stability.
+- Avoid introducing extra infrastructure unless it clearly improves reliability or usability.

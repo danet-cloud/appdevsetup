@@ -1,0 +1,30 @@
+---
+description: Use when integrating LLMs: prompt versioning, structured outputs, provider choice, and reliability
+globs: []
+alwaysApply: false
+---
+
+LLM integration
+
+Provider strategy
+- Use the best available model for the task by default.
+- Include an easy way to switch providers/models (config/env), without rewriting code.
+- Prefer stable, well-supported SDK patterns already used in the repo.
+
+Prompt management
+- Keep prompts versioned in the repo (files), not buried in code.
+- Name prompts by intent (e.g. summarise-letter, extract-fields, classify-document).
+- Write prompts to mirror user workflows and acceptance criteria.
+
+Structured outputs
+- For anything that must be reliable (tables, Airtable fields, JSON):
+  - enforce a schema and validate outputs,
+  - handle retries with narrowed instructions upon validation failures.
+
+Safety defaults
+- Assume inputs may be sensitive unless the project description states otherwise.
+- Avoid sending unnecessary data to models; redact identifiers when feasible.
+
+Observability
+- Log: model used, prompt version, token/cost estimate if available, and validation failures.
+- Keep logs readable and actionable for a non-technical user.

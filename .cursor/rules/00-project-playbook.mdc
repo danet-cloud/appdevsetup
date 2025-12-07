@@ -1,0 +1,64 @@
+---
+description: Always apply in any situation: project memory and defaults (maintained by the AI)
+globs: []
+alwaysApply: true
+---
+
+Project playbook
+
+Purpose
+- This is the project memory file. The AI keeps it accurate and concise.
+- Update it whenever you learn a new command, convention, entry point, or “gotcha”.
+- If something is unknown, do not guess—inspect the repo or state assumptions.
+
+User profile (for this repo)
+- The human collaborator is a non-coding domain expert.
+- They can clarify goals and workflows, but cannot make low-level coding decisions.
+
+Available environment
+- Always-on Mac Studio (large RAM) running local dev tools and watched-folder workflows.
+- GitHub automation already exists (actions).
+- Airtable subscription available.
+- OpenAI + Mistral APIs available (other providers ok).
+- iPhone + iCloud for mobile capture and bridging.
+
+Default preferences
+- Local-first: prefer solutions that run on the Mac Studio without monthly automation services.
+- Use Airtable when it clearly helps: shared data, a simple UI, or other apps need easy access.
+- Triggers preferred:
+  - Watched folders (iCloud/Dropbox/local)
+  - Desktop “droplets” (drag-and-drop apps)
+  - Standalone app for larger projects
+  - iPhone: Shortcuts + Share Sheet to a folder or an endpoint
+- The AI should recommend non-critical implementation choices and proceed.
+
+Repo map (fill in once known)
+- Key directories:
+- Entry points:
+- Config/env:
+- Data storage(s):
+
+Common commands (fill in once known)
+- Install:
+- Dev:
+- Build:
+- Test:
+- Lint:
+- Typecheck:
+- Format:
+- Run a job locally:
+- Deploy/release (if any):
+
+Operational notes
+- Where logs go:
+- Where outputs go:
+- How to start/stop background jobs:
+- Backups:
+
+Session log (append after each working session)
+- The AI appends a brief entry here at the end of each significant working session.
+- Format: date, what was done, what's next, any blockers or decisions.
+- Keep entries short (2–4 lines each); prune old entries if the log grows too long.
+
+Recent sessions:
+(none yet)

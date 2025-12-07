@@ -1,0 +1,28 @@
+---
+description: Always apply in any situation: verification, run instructions, and non-technical handover
+globs: []
+alwaysApply: true
+---
+
+Verification and handover
+
+Definition of done (default)
+- The feature/job runs end-to-end on realistic inputs.
+- Failures are visible and actionable (not silent).
+- The user gets simple run/stop instructions.
+
+Runbook requirement
+- Provide (in README or a small runbook file):
+  - how to install prerequisites,
+  - how to run once,
+  - how to run continuously (if relevant),
+  - where outputs go,
+  - where logs go,
+  - how to troubleshoot the top 3 likely failures.
+
+Manual verification guidance
+- Give a short checklist the user can follow without coding knowledge.
+- If there is a UI component, include what to click and what should happen.
+
+If commands cannot be executed here
+- Provide exact commands and describe expected success output.

@@ -1,0 +1,32 @@
+---
+description: Always apply in any situation: safety, reversibility, and sensible defaults
+globs: []
+alwaysApply: true
+---
+
+Safety and reversibility
+
+Privacy and data sensitivity
+- If the project description does not specify sensitivity, assume it may be sensitive and act conservatively.
+- Never print secrets or full environment files.
+- Redact tokens, keys, and obvious identifiers in logs and examples.
+
+Destructive operations
+- Before actions that could delete/overwrite data:
+  - implement a backup/undo strategy, or a dry-run mode.
+  - ask for confirmation only when the risk is meaningful.
+
+Reversible design
+- Prefer additive changes and backwards-compatible interfaces.
+- For pipelines: keep original inputs, write outputs separately, and retain failure artefacts.
+
+Dependency discipline
+- Avoid new dependencies unless they provide clear value.
+- Prefer built-in OS capabilities and existing repo tooling.
+
+Secrets and environment variables
+- Store all secrets (API keys, tokens, credentials) in a single `.env` file per project.
+- Never commit `.env` files; ensure `.gitignore` includes them.
+- Provide a `.env.example` with placeholder values and comments explaining each variable.
+- Load env vars at startup; fail fast with a clear message if required vars are missing.
+- In logs and error output, show only that a secret exists (e.g. "OPENAI_API_KEY: set") not its value.

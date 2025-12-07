@@ -1,0 +1,34 @@
+---
+description: Use when Airtable is involved: when to use it, schema hygiene, and integration patterns
+globs: []
+alwaysApply: false
+---
+
+Airtable usage
+
+When to use Airtable (recommended criteria)
+- Use Airtable when:
+  - the data must be consumed by other apps/services easily,
+  - you want a simple UI for viewing/editing/triaging,
+  - it acts as a lightweight queue or tracking system.
+- Keep the job local when:
+  - it is a discrete one-off transformation,
+  - data does not need multi-device access,
+  - Airtable adds friction without benefit.
+
+Schema hygiene
+- Prefer stable IDs and explicit fields over implicit meanings.
+- Store:
+  - source file reference (path/URL),
+  - processing status (queued/running/success/failed),
+  - timestamps,
+  - outputs (links/paths),
+  - error details (short + actionable).
+
+Integration patterns
+- Batch reads/writes where possible.
+- Avoid “chatty” row-by-row updates unless needed for UX.
+- Keep Airtable as coordination/UI; keep heavy processing local on the Mac Studio.
+
+Secrets
+- Airtable keys live in environment variables, not in code or Airtable itself.
