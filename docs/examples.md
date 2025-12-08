@@ -106,7 +106,7 @@ See `docs/tailscale-endpoint-pattern.md` for the template. Filled example:
 ## Example 3: LLM-powered document analysis
 
 ### Scenario
-A script that uses OpenAI API to analyse medical documents and extract structured information.
+A script that uses OpenAI API to analyse legal documents and extract structured information (key terms, dates, parties, obligations).
 
 ### How rules apply
 
@@ -121,9 +121,9 @@ A script that uses OpenAI API to analyse medical documents and extract structure
 - Keeps original documents, writes analysis separately
 
 **Collaboration style** (`01-collaboration-style.mdc`):
-- Treats user as domain expert (medical professional)
+- Treats user as domain expert (legal professional or subject matter expert)
 - Makes technical decisions autonomously
-- Only asks about medical/domain-specific choices
+- Only asks about domain-specific choices (e.g., which fields to extract, validation rules)
 
 **Project playbook**:
 ```
@@ -134,7 +134,7 @@ Operational notes:
 - Backups: Original documents kept in inputs/archive/
 
 Session log:
-- 2025-01-15: Implemented basic extraction. Next: Add validation for medical terminology.
+- 2025-01-15: Implemented basic extraction. Next: Add validation for domain-specific terminology.
 - 2025-01-16: Added terminology validation. Next: Test with real case files.
 ```
 
